@@ -20,19 +20,15 @@ public class OrdersWriter {
             for (int j = 0; j < order.getProductsCount(); j++) {
                 Product product = order.getProduct(j);
                 sb.append(product.getProductContents());
-                sb.append(",");
+                if (j !=  order.getProductsCount() - 1) {
+                    sb.append(", ");
+                }
             }
 
-            if (order.getProductsCount() > 0) {
-                sb.delete(sb.length() - 2, sb.length());
+            sb.append("]}");
+            if (i != orders.getOrdersCount() - 1) {
+                sb.append(", ");
             }
-
-            sb.append("]");
-            sb.append("}, ");
-        }
-
-        if (orders.getOrdersCount() > 0) {
-            sb.delete(sb.length() - 2, sb.length());
         }
 
         return sb.append("]}").toString();
